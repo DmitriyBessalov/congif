@@ -1,0 +1,52 @@
+sudo apt-get install -y nginx
+
+sudo mkdir /home/www/nginx_cache/
+sudo chown -R www:www /home/www/
+sudo chmod 777 /home/www/nginx_cache/
+
+sudo nano /etc/nginx/sites-enabled/default
+
+---------------------------------------
+server {
+  listen 80;
+  charset utf-8;
+  server_name;
+  client_max_body_size 20M;
+  
+  location /static/ {
+    gzip              on;
+    gzip_comp_level   1;
+    gzip_types text/plain text/css text/x-scss text/x-csrc application/json application/x-javascript text/xml application/xml application/x-yaml application/xml+rss text/javascript application/javascript application/vnd.ms-fontobject application/x-font-ttf font/opentype image/svg+xml image/x-icon application/octet-stream font/ttf font/woff font/woff2;
+    expires 8h;
+
+    root /home/www/buddhachess/;
+  }
+
+  location / {
+    gzip on;
+    gzip_comp_level 1;
+    gzip_types application/json;
+  
+    proxy_pass http://127.0.0.1:8000;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+
+    proxy_redirect off;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Host $server_name;
+    add_header Access-Control-Allow-Origin *;
+  }
+  
+  # error_log  /tmp/nginx_error.log warn;
+  # access_log /tmp/nginx_access.log combined;
+
+}
+
+
+-----------------------------
+# удалить все временные файлы после радактирования редактора nano в директории /etc/nginx/sites-enabled/
+
+sudo service nginx restart

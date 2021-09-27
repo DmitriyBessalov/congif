@@ -1,0 +1,5 @@
+# На клиенте
+sudo nano /etc/ssh/ssh_config
+
+# Добавить в конец файла строку:
+    ServerAliveInterval 30

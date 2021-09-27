@@ -1,0 +1,15 @@
+# https://certbot.eff.org/lets-encrypt/ubuntufocal-nginx
+# https://www.youtube.com/watch?v=1wnOw1vwPEo
+sudo apt install snapd
+
+sudo snap install --classic certbot
+sudo ln -s /snap/bin/certbot /usr/bin/certbot
+sudo certbot --nginx
+
+
+# довавить поддержку http2
+sudo nano /etc/nginx/sites-available/default
+# заменить строку
+   listen 443 ssl; # managed by Certbot
+# на строку
+   listen 443 ssl http2; # managed by Certbot

@@ -1,0 +1,4 @@
+sudo apt install -y redis-server
+
+# gui
+sudo snap install redis-desktop-manager

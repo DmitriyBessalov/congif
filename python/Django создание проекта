@@ -1,0 +1,33 @@
+# Создаём директорию проекта и переходим в неё
+mkdir {project_name}
+
+# Создаёт файлы проекта
+django-admin startproject config ./
+
+python manage.py migrate
+
+# Запуск c доступом из сети
+python manage.py runserver 0.0.0.0:80
+
+# Создание приложения
+python manage.py startapp {appname}
+python manage.py makemigrations && python manage.py migrate
+
+
+# Создать пользователя
+python manage.py createsuperuser
+
+# Сборка статики
+rm -r ./static && python3 manage.py collectstatic && cp ./nodejs/build/index.html ./templates/index.html && cp ./nodejs/build/robots.txt ./templates/robots.txt
+
+
+# Настройка git
+git config --global user.email dmitriy@bessalov.ru
+git config --global user.name Dmitriy
+
+# Откат миграции
+python manage.py migrate {my_app} {0001_initial}
+
+# Откат всех миграции
+python manage.py migrate {my_app} zero
+

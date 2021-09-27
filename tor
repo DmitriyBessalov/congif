@@ -1,0 +1,6 @@
+# Установка Тор
+
+sudo apt install tor
+sudo systemctl enable tor
+sudo systemctl start tor
+sudo systemctl status tor

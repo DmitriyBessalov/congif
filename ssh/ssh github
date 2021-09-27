@@ -1,0 +1,5 @@
+#Создать сертификат для github
+# при создании passphrase оставлять пустым
+
+ssh-keygen -t rsa -b 4096 -C "dmitriy@bessalov.ru"
+#Скопировать содержимое файла ~/.ssh/id_rsa.pub и подключить сертификат на странице https://github.com/settings/keys

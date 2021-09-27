@@ -1,0 +1,15 @@
+Все строки должны быть в двойных кавычках
+
+$_POST = array_map('addslashes', $_POST);
+$_GET = array_map('addslashes', $_GET);
+$_COOKIE = array_map('addslashes', $_COOKIE);
+$_REQUEST = array_map('addslashes', $_REQUEST);
+
+$_POST = array_map('stripslashes', $_POST);
+$_GET = array_map('stripslashes', $_GET);
+$_COOKIE = array_map('stripslashes', $_COOKIE);
+$_REQUEST = array_map('stripslashes', $_REQUEST);
+
+Очистка от слешей
+stripslashes_deep
+

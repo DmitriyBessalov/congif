@@ -1,0 +1,17 @@
+# Где 14.x посленяя версия nodejs
+curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
+cd ~/nodejs
+
+sudo npm install -g degit
+
+degit sveltejs/template myproject
+
+cd ./myproject
+
+npm install
+
+npm run dev
+
+sudo npm run dev

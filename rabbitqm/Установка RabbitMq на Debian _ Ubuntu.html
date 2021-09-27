@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<!-- saved from url=(0078)https://www.saqot.com/working/rabbitmq-queue-bundle/setup-rabbitmq-ubuntu.html -->
+<html lang="ru"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<title>Установка RabbitMq на Debian / Ubuntu</title>
+</head>
+<body>
+
+			<div class="row">
+		<div class="col-sm-9 ">
+			<h2>Установка RabbitMq на Debian / Ubuntu</h2>
+			<hr>
+			<div class="float-right"><a href="https://www.saqot.com/working/rabbitmq-queue-bundle/">RabbitMq Queue Bundle</a></div>
+
+			<p>Для начала стоит обновить систему, выполняем код</p>
+			<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><span class="pln">sudo apt</span><span class="pun">-</span><span class="kwd">get</span><span class="pln"> update </span><span class="pun">-</span><span class="pln">y</span></li></ol></pre>
+
+			<h4>Установить Erlang</h4>
+			<ul>
+				<li>
+					<p>Вар 1</p>
+					<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><span class="pln">wget http</span><span class="pun">:</span><span class="com">//packages.erlang-solutions.com/ubuntu/erlang_solutions.asc</span></li><li class="L1"><span class="pln">sudo apt</span><span class="pun">-</span><span class="pln">key </span><span class="kwd">add</span><span class="pln"> erlang_solutions</span><span class="pun">.</span><span class="pln">asc</span></li></ol></pre>
+				</li>
+				<li>
+					<p>Вар 2</p>
+					<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><span class="pln">wget https</span><span class="pun">:</span><span class="com">//packages.erlang-solutions.com/erlang-solutions_1.0_all.deb</span></li><li class="L1"><span class="pln">sudo dpkg </span><span class="pun">-</span><span class="pln">i erlang</span><span class="pun">-</span><span class="pln">solutions_1</span><span class="pun">.</span><span class="lit">0</span><span class="pln">_all</span><span class="pun">.</span><span class="pln">deb</span></li></ol></pre>
+				</li>
+				<li>
+					<p>Устанавливаем сам Erlang</p>
+					<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><span class="pln">sudo apt</span><span class="pun">-</span><span class="kwd">get</span><span class="pln"> update </span><span class="pun">-</span><span class="pln">y</span></li><li class="L1"><span class="pln">sudo apt</span><span class="pun">-</span><span class="kwd">get</span><span class="pln"> install erlang </span><span class="pun">-</span><span class="pln">y</span></li><li class="L2"><span class="pln">sudo apt</span><span class="pun">-</span><span class="kwd">get</span><span class="pln"> install erlang</span><span class="pun">-</span><span class="pln">nox </span><span class="pun">-</span><span class="pln">y</span></li></ol></pre>
+				</li>
+			</ul>
+
+			<br>
+			<h4>Установить RabbitMQ</h4>
+			<ul>
+				<li>
+					<p>Добваляем актуальный репозиторий</p>
+					<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><span class="pln">sudo echo </span><span class="str">'deb http://www.rabbitmq.com/debian testing main'</span><span class="pln"> </span><span class="pun">|</span><span class="pln"> sudo tee </span><span class="pun">/</span><span class="pln">etc</span><span class="pun">/</span><span class="pln">apt</span><span class="pun">/</span><span class="pln">sources</span><span class="pun">.</span><span class="pln">list</span><span class="pun">.</span><span class="pln">d</span><span class="pun">/</span><span class="pln">rabbitmq</span><span class="pun">.</span><span class="pln">list</span></li></ol></pre>
+				</li>
+				<li>
+					<p>Получаем кей и устанавливаем сервер</p>
+					<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><span class="pln">wget </span><span class="pun">-</span><span class="pln">O</span><span class="pun">-</span><span class="pln"> https</span><span class="pun">:</span><span class="com">//www.rabbitmq.com/rabbitmq-release-signing-key.asc | sudo apt-key add -</span></li><li class="L1"><span class="pln">sudo apt</span><span class="pun">-</span><span class="kwd">get</span><span class="pln"> update</span></li><li class="L2"><span class="pln">sudo apt</span><span class="pun">-</span><span class="kwd">get</span><span class="pln"> install rabbitmq</span><span class="pun">-</span><span class="pln">server</span></li></ol></pre>
+				</li>
+				<li>
+					<p>При включенном брандмауэре UFW, тобы получить доступ к консоли удаленного управления RabbitMQ, вам необходимо разрешить входящий TCP-трафик на портах 4369, 5671, 5672, 25672, 15672, 15675, 61613, 61614, 1883, 15674.</p>
+					<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><span class="pln">sudo ufw allow </span><span class="lit">4369</span></li><li class="L1"><span class="pln">sudo ufw allow </span><span class="lit">5671</span><span class="pun">:</span><span class="lit">5672</span></li><li class="L2"><span class="pln">sudo ufw allow </span><span class="lit">15672</span><span class="pun">:</span><span class="lit">15675</span></li><li class="L3"><span class="pln">sudo ufw allow </span><span class="lit">25672</span></li><li class="L4"><span class="pln">sudo ufw allow </span><span class="lit">61613</span><span class="pun">:</span><span class="lit">61614</span></li><li class="L5"><span class="pln">sudo ufw allow </span><span class="lit">1883</span></li><li class="L6"><span class="pln">sudo ufw allow </span><span class="lit">15674</span></li></ol></pre>
+				</li>
+				<li>
+					<p>Меняем ограничение на количество открытых файлов</p>
+					<p>Открываем файл <b>/etc/default/rabbitmq-server</b> , находим строку с ulimit (расскоментируем) и выставляем значение</p>
+					<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><span class="pln">ulimit </span><span class="pun">-</span><span class="pln">n </span><span class="lit">1024</span></li></ol></pre>
+
+				</li>
+				<li>
+					<p>Помечаем rabbitmq для автоматического запуска при перезагрузках</p>
+					<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><span class="pln">sudo systemctl enable rabbitmq</span><span class="pun">-</span><span class="pln">server</span></li></ol></pre>
+				</li>
+				<li>
+					<p>Запускаем сервер</p>
+					<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><span class="pln">sudo systemctl start rabbitmq</span><span class="pun">-</span><span class="pln">server</span></li></ol></pre>
+				</li>
+				<li>
+					<p>Ставим стандартные плагины</p>
+					<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><span class="pln">sudo rabbitmq</span><span class="pun">-</span><span class="pln">plugins enable rabbitmq_management</span></li></ol></pre>
+				</li>
+				<li>
+					<p>Если все сделано верно, то вы получите доступ к админ панели <a href="http://localhost:15672/" target="_blank">http://localhost:15672/</a></p>
+					<blockquote>По умолчанию создается сразу юзер <b>guest</b> с одноименным паролем. У него админский доступ по localhost. Рекомендую создать собственного пользователя, а <b>guest</b> удалить.</blockquote>
+				</li>
+
+			</ul>
+
+			<br>
+			<h4>Управление</h4>
+			<ul>
+				<li>
+					<p>Управление службой</p>
+					<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><span class="com"># Старт</span></li><li class="L1"><span class="pln">sudo systemctl start rabbitmq</span><span class="pun">-</span><span class="pln">server</span></li><li class="L2"><span class="com"># Стоп:</span></li><li class="L3"><span class="pln">sudo systemctl stop rabbitmq</span><span class="pun">-</span><span class="pln">server</span></li><li class="L4"><span class="com"># Перезагрузка:</span></li><li class="L5"><span class="pln">sudo systemctl restart rabbitmq</span><span class="pun">-</span><span class="pln">server</span></li><li class="L6"><span class="com"># Статус:</span></li><li class="L7"><span class="pln">sudo systemctl status rabbitmq</span><span class="pun">-</span><span class="pln">server</span></li></ol></pre>
+				</li>
+				<li>
+					<p>Управление сервером</p>
+					<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><span class="com"># Старт</span></li><li class="L1"><span class="pln">sudo rabbitmqctl start</span></li><li class="L2"><span class="com"># Стоп:</span></li><li class="L3"><span class="pln">sudo rabbitmqctl stop</span></li></ol></pre>
+				</li>
+				<li>
+					<p>Управление юзерами</p>
+					<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><span class="com"># Добавить юзера</span></li><li class="L1"><span class="pln">sudo rabbitmqctl add_user cinder CINDER_PASS</span></li><li class="L2"><span class="com"># Изменить пароль юзеру</span></li><li class="L3"><span class="pln">sudo rabbitmqctl change_password cinder NEW_PASS</span></li><li class="L4"><span class="com"># Сделать юзера админом</span></li><li class="L5"><span class="pln">sudo rabbitmqctl set_user_tags cinder administrator</span></li><li class="L6"><span class="com"># Выставить привелегии юзеру</span></li><li class="L7"><span class="pln">sudo rabbitmqctl set_permissions cinder </span><span class="str">".*"</span><span class="pln"> </span><span class="str">".*"</span><span class="pln"> </span><span class="str">".*"</span></li><li class="L8"><span class="com"># Просмотреть список привелегий</span></li><li class="L9"><span class="pln">sudo rabbitmqctl list_permissions</span></li></ol></pre>
+				</li>
+			</ul>
+
+			<br><br><br>
+
+		</div>
+
+
+	</div>
+</div>
+
+
+
+
+
+
+
+</body></html>

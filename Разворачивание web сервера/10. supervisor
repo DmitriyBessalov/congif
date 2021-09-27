@@ -1,0 +1,48 @@
+----------------------------------------------
+Для FastAPI
+# uvicorn main:app --reload --workers 4
+
+nano ./start_uvicorn.sh
+
+#!bin/bash
+cd /home/www/buddhachess
+source ./.venv/bin/activate && exec uvicorn main:app --reload --workers 4
+
+chmod +x ./start_uvicorn.sh
+
+sudo nano /etc/supervisor/conf.d/project.conf
+[program:fastapi]
+command=bash /home/www/buddhachess/start_uvicorn.sh
+user=root
+process_name=fastapi
+numproc=1
+autostart=1
+autorestart=1
+redirect_strerr=true
+
+
+----------------------------------------------
+Для Django
+
+# daphne config.asgi:application
+nano ./start_daphne.sh
+#!bin/bash
+cd /home/www/social_network
+source ./.venv/bin/activate && exec daphne -b 0.0.0.0 -p 8000 config.asgi:application
+
+chmod +x ./start_daphne.sh
+
+sudo nano /etc/supervisor/conf.d/project.conf
+[program:daphne]
+command=bash /home/www/social_network/start_daphne.sh
+user=www
+process_name=django
+numproc=1
+autostart=1
+autorestart=1
+redirect_strerr=true
+----------------------------------------------
+    
+#Применить изменения конфига
+sudo supervisorctl reread && sudo supervisorctl update && sudo service supervisor restart
+sudo supervisorctl status

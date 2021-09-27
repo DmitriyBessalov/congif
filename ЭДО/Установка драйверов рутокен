@@ -1,0 +1,8 @@
+1. Установить Сбис Плагин
+
+2. Установить расширение chrome
+https://chrome.google.com/webstore/detail/sbis-plugin-extension/pbcgcpeifkdjijdjambaakmhhpkfgoec
+
+3. Установка драйверов рутокен
+# https://sbis.ru/help/ep/key/rutoken/driver?tb=tab2
+sudo apt-get install libccid pcscd libpcsclite1 pcscd pcsc-tools opensc

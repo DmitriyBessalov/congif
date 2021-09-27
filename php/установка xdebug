@@ -1,0 +1,12 @@
+apt-get install php-xdebug
+
+#Добавить в файл /etc/php/7.0/apache2/conf.d/20-xdebug.ini строки:
+xdebug.profiler_enable_trigger = 1
+xdebug.profiler_enable = 0
+xdebug.remote_enable = 1
+xdebug.remote_autostart = 1
+xdebug.remote_port = 9000
+xdebug.profiler_output_dir = "/tmp"
+
+#Выполнить
+service apache2 restart

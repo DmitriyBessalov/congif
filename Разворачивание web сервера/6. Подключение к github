@@ -1,0 +1,15 @@
+#Создать ключ для приватного репозитория
+ssh-keygen -t rsa
+#Прописать ключ на Github
+cat /home/www/.ssh/id_rsa.pub
+
+# скачать копию Git
+git clone https://github.com/DmitriyBessalov/buddhachess.git
+
+
+git config --global user.email dmitriy@bessalov.ru
+git config --global user.name Dmitriy
+
+
+## обновить версию из github
+## cd /var/www/social_network && git reset --hard origin/master && git pull https://github.com/DmitriyBessalov/buddhachess.git

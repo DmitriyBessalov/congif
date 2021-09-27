@@ -1,0 +1,5 @@
+#выполнять на сервере:
+sudo apt-get update
+sudo apt-get upgrade -y
+sudo apt-get install -y python3.9 python3-distutils python3-apt python3.9-dev python3-psycopg2 libpq-dev python3-django supervisor curl tmux net-tools gcc daphne git nmon
+

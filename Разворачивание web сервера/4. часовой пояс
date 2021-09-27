@@ -1,0 +1,2 @@
+#Установить часовой пояс
+sudo timedatectl set-timezone Europe/Moscow

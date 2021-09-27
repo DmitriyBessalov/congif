@@ -1,0 +1,6 @@
+sudo apt-get install {/path/to/}nordvpn-release_1.0.0_all.deb
+sudo apt-get update
+sudo apt-get install -y nordvpn 
+nordvpn login
+
+nordvpn connect

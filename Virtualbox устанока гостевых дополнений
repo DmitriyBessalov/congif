@@ -1,0 +1,4 @@
+sudo apt-get install build-essential module-assistant 
+sudo m-a prepare
+sudo sh /media/cdrom/VBoxLinuxAdditions.run
+reboot

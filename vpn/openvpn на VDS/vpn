@@ -1,0 +1,38 @@
+Создать пустой облачный сервер ubuntu на reg.ru
+
+Установка (подробнее https://www.youtube.com/watch?v=VBWydSqksFY): 
+wget https://git.io/vpn -O openvpn-install.sh
+sudo bash ./openvpn-install.sh
+
+Скопировать файл /root/client.ovpn с сервера
+
+После скачивания файла в Network Manadger
+Соединения VPN -> Настроить VPN -> "+" -> Импортировать сохранённую конфигурацию VPN...
+
+
+# Для пропускания трафика на внутрению сеть
+nano /etc/sysctl.conf
+#раскоментировать строку
+net.ipv4.ip_forward=1
+
+# Посмотреть внешний ip сервера
+ifconfig | grep "inet " 
+
+# перенаправления портов
+# где ip vpn сервера 84.201.153.117 с интерфейсом eth0 и ip моего ноутбука 10.8.0.2
+iptables -t nat -A PREROUTING -p tcp -i eth0 -d 84.201.153.117 --dport 80  -j DNAT --to-destination 10.8.0.2:8000
+iptables -t nat -A PREROUTING -p tcp -i eth0 -d 84.201.153.117 --dport 443 -j DNAT --to-destination 10.8.0.2:443
+
+
+# Показать текущие перенаправления построчно
+iptables -L PREROUTING -t nat --line-numbers
+
+# Удаление правила (где 1 номер строки) 
+iptables -t nat -D PREROUTING 1
+
+# Для сохранения правил iptabler после перезагрузки
+sudo apt-get install -y iptables-persistent
+# Конфигурации пакета сохранить правила для пакета ip4, но не сохранять для ip6
+
+# При изменении правил сохранять
+netfilter-persistent save

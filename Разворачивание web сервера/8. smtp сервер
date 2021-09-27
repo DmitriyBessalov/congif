@@ -1,0 +1,28 @@
+sudo apt-get install -y postfix mailutils
+
+# Выбрать опцию "Интернет сайт"
+
+sudo nano /etc/postfix/main.cf
+
+# Строку "inet_interfaces = all"
+# Заменинь на "inet_interfaces = localhost"
+
+# Строку "myhostname = laptop"
+# Заменинь на "myhostname = bessalov.ru"
+
+# Строку "myorigin = /etc/mailname"
+# Заменинь на "myorigin = bessalov.ru"
+
+# Строку "mydestination = $myhostname, domain.ru, localhost.domain.ru, localhost"
+# Заменинь на "mydestination = bessalov.ru, localhost"
+
+sudo service postfix restart
+-----
+
+# Проверка отправки на сайт Временной почты где to@temp-mail.org получатель и no-retly@bessalov.ru отправитель
+
+echo "Test text" | mail -s "Test title" to@temp-mail.org -aFrom:no-retly@bessalov.ru
+
+------
+
+# Для гарантированной доставки нужно прописать ip в spf запись и сгенирировать DKIP подпись

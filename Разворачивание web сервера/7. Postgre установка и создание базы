@@ -1,0 +1,37 @@
+# Установка на ubuntu 20.04
+sudo apt-get install -y postgresql-13 libpq-dev
+
+# Смена пользователя
+sudo -i -u postgres
+
+# Создание базы данных
+createdb {dbname}
+
+# вход в консоль postges
+psql
+
+# Создание пользователя базы данных c паролем
+$ create user {username} with password '{password}';
+
+# Выдать права пользователю на базу данных
+$ grant all privileges on database {dbname} to {username};
+
+# Выход из консоли
+\q
+
+# Включить удаленный доступ
+sudo nano /etc/postgresql/13/main/postgresql.conf  
+# заменить стоку
+    #listen_addresses = 'localhost'
+# на (доступ с любого ip)
+    listen_addresses = '*'
+    
+# Настройка удаленного для конкретного пользователя в конкретную базу
+sudo nano /etc/postgresql/13/main/pg_hba.conf
+# Добавить строку
+hostssl {dbname}       {username}       0.0.0.0/0               md5
+    
+# Перезагрузить Postgres
+sudo systemctl restart postgresql.service    
+    
+# Теперь можно подключиться через DataGrip и DBeaver

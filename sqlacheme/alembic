@@ -1,0 +1,13 @@
+poetry add fastapi uvicorn SQLAlchemy psycopg2-binary alembic pydantic[dotenv]
+
+# Начальная миграция
+alembic init migrations
+
+# Сгенирировать миграцию init7
+alembic revision --autogenerate -m "init7"
+
+# Применить миграции
+alembic upgrade head
+
+# Сбросить все миграции
+alembic stamp base

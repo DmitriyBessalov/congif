@@ -1,0 +1,23 @@
+# Создание пользователя
+http://127.0.0.1:8000/api/auth/users/
+
+# Активация пользователя емайл
+http://127.0.0.1:8000/api/auth/users/activation/
+
+# Получение токена
+http://127.0.0.1:8000/api/auth/token
+
+# Повторная отправка на емайл
+http://127.0.0.1:8000/api/auth/users/resend_activation/
+
+# Просморт, получение, изменение, удаление текущего пользователя
+http://127.0.0.1:8000/api/auth/users/me/
+
+# Изменение пароля
+http://127.0.0.1:8000/api/auth/users/set_password/
+
+# Сброс пароля
+http://127.0.0.1:8000/api/auth/users/reset_password/
+
+Подтверждение сброса пароля
+http://127.0.0.1:8000/api/auth/users/reset_password_confirm/

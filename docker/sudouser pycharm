@@ -1,0 +1,3 @@
+# Ярлык программы pycharm запускать командой
+
+pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY BAMF_DESKTOP_FILE_HINT=/var/lib/snapd/desktop/applications/pycharm-professional_pycharm-professional.desktop /snap/bin/pycharm-professional %f

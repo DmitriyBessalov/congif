@@ -1,0 +1,9 @@
+sudo apt-get install python3.9-dev
+
+poetry add uvicorn[standard]
+poetry add fastapi[all]
+poetry add fastapi-users[sqlalchemy]
+poetry add databases[postgresql]
+
+
+uvicorn main:app --reload --workers 4

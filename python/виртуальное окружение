@@ -1,0 +1,18 @@
+#Создать каталог проекта и перейти в него
+mkdir ...
+cd ...
+
+#Создать виртуальное окружение (coздаёт папку venv)
+python3 -m venv venv
+
+#Активация окружения
+source ./.venv/bin/activate
+
+# Проверка
+>>> import sys
+>>> sys.path
+
+pip3 install -r requirements.txt 
+
+#Для деактивации в катологе
+deactivate

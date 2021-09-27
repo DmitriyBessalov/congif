@@ -1,0 +1,56 @@
+# Установка nodejs в систему (текущая стабильная версия 16)
+sudo curl -sL https://deb.nodesource.com/setup_16.x | sudo bash -
+sudo apt install nodejs
+
+
+# перейти в каталог js приложений
+cd ~/projects/dmitriy
+
+-------------------
+# Создать окружение Django проекта 
+...
+
+# в корневой папке проекта django создать React приложение
+npx create-react-app {my_app_js}
+
+# перейти в приложение
+cd {my_app_js}
+
+# Запуск приложения
+npm start
+
+# Собрать приложение react
+npm run build
+
+# добавить в settings.py
+TEMPLATES = [
+    {
+        DIRS: [BASE_DIR / '{my_app_js}/build']
+    }
+]
+ 
+STATIC_ROOT = BASE_DIR / 'static'
+
+STATICFILES_DIRS = (
+    BASE_DIR / '{my_app_js}/build/static'
+)
+
+# Вернуться в каталог django
+cd ../
+
+# Создать каталог static для Django
+mkdir ./static
+
+# скопировать статику в Django
+python manage.py collectstatic
+ 
+# Установка дополнительных пакетов
+                                        # import React, { useState, useEffect } from 'react';
+npm install --save bootstrap            # import 'bootstrap/dist/css/bootstrap.min.css';
+npm install --save react-router-dom     # import {Link} from 'react-router-dom';
+
+# Возможно установить axios             # import axios from 'axios';
+
+-------------------
+# Для востановления пакетов из package.json
+npm install
