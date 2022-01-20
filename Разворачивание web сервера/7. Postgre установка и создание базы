@@ -1,4 +1,4 @@
-# Установка на ubuntu 20.04
+# Установка на ubuntu 21.10
 sudo apt-get install -y postgresql-13 libpq-dev
 
 # Смена пользователя
@@ -32,6 +32,6 @@ sudo nano /etc/postgresql/13/main/pg_hba.conf
 hostssl {dbname}       {username}       0.0.0.0/0               md5
     
 # Перезагрузить Postgres
-sudo systemctl restart postgresql.service    
+sudo systemctl restart postgresql.service
     
 # Теперь можно подключиться через DataGrip и DBeaver

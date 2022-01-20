@@ -1,0 +1,35 @@
+# Для основного и управляемого сервера portainer
+# Сервера должны находить в одной локальной сети или на внешних IP адрасах
+
+apt-get update && apt-get upgrade -y
+sudo apt install -y apt-transport-https ca-certificates curl gnupg-agent software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+sudo apt install -y docker-ce docker-ce-cli docker-compose containerd.io
+
+# Проверка
+sudo systemctl status docker
+
+------------------------------
+# Для основного сервера portainer
+
+sudo docker volume create portainer_data
+
+sudo docker run -d -p 8000:8000 -p 9000:9000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce
+
+# Открыть браузер http://127.0.0.1:9000/
+# И создать пользователя
+
+------------------------------
+Создать в web админке на основном сервере конфигурацию для управляемого portainer
+Environments -> Add environments -> Edge agent
+Заполнить поле "name"
+Нажать: Add environments
+Перейти на tab: Docker Standalone
+Заполнить поле "Public IP" для управляемого сервера
+Скопировать команду и выполнить на управляемом сервере
+
+------------------------------
+# docker без sudo, для PyCharm
+sudo chmod a+rwx /var/run/docker.sock
+sudo chmod a+rwx /var/run/docker.pid

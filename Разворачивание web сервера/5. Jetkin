@@ -1,0 +1,32 @@
+sudo apt-get install -y default-jdk
+
+# Создаём файл
+sudo nano /etc/apt/sources.list.d/jenkins.list
+# с содержимым
+deb https://pkg.jenkins.io/debian-stable binary/
+
+# Добавляем ключ
+wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+
+sudo apt-get update
+
+sudo apt-get install -y jenkins
+
+sudo systemctl enable jenkins
+
+# переходим по адресу
+http://127.0.0.1:8080/login
+
+# Вводим пароль из файла
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+
+# настроить ssh ключи для приватного репозитория по видео
+https://www.youtube.com/watch?v=G0arKBpm12w
+
+# Прописать webhook на github
+GitHub repo -> Settings -> Webhooks
+http(s)://host:<port>/github-webhook/
+
+# Установить плагин для публикации через ssh
+"Publish Over SSH"
+

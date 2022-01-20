@@ -1,0 +1,8 @@
+sudo apt-get install rabbitmq-server -y
+sudo systemctl enable rabbitmq-server
+sudo rabbitmq-plugins enable rabbitmq_management
+
+http://127.0.0.1:15672/
+
+login: guest
+password: guest

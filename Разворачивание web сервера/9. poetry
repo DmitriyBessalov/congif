@@ -1,5 +1,5 @@
 #установка
-curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3 -
+curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3.10 -
 
 # Добавить в окружение команду poetry
 sudo nano /etc/environment
@@ -18,11 +18,9 @@ poetry shell
 # обновить пакеты из toml файла
 poetry update package
 
-# # добавление пакета
-# poetry add django pillow psycopg2-binary python-dotenv daphne
-
 
 ----------------------------------------------
+
 # создаём pyproject.toml
 poetry init
 

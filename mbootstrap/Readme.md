@@ -22,3 +22,6 @@ highlightedtems.forEach(function(userItem) {
 
 # скидочная страница https://mdbootstrap.com/sale/unique/
 Скидка по промо коду: ev9etks9
+
+# скидочная страница https://mdbootstrap.com/sale/back2school/
+Скидка по промо коду: 8VSSUJEK

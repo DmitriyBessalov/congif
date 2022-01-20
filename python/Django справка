@@ -1,0 +1,51 @@
+allaunf расширенная модель (доступы)
+загрузка картинок,
+swagger в проекте,
+DRF,
+Кастомизация админки
+
+
+Сброс пароля
+python3 manage.py changepassword <user_name>
+
+Django Debug Toolbar
+https://sys-adm.in/web/624-enable-django-debug-toolbar.html
+
+Добавление администратора
+python manage.py createsuperuser
+
+Миграции
+python manage.py makemigration
+python manage.py migrate
+
+Проверка на ошибки
+python manage.py check
+
+Столбцы в админке
+https://www.youtube.com/watch?v=e51BHf4GPyM 19:30
+
+View
+https://www.youtube.com/watch?v=e51BHf4GPyM 27:00
+
+Формы
+https://www.youtube.com/watch?v=e51BHf4GPyM
+
+MEDIA_URL
+https://www.youtube.com/watch?v=JgfxjDHCd8c 00:00
+
+django-robokassa
+https://github.com/DJWOMS/django-robokassa
+
+Универсальная отдача csrftoken при ajax в header
+https://www.youtube.com/watch?v=8u4ByPFI37E 14:30
+
+OMS local_settings.py
+https://www.youtube.com/watch?v=Jsci3k_--8U&t=1025
+
+Расширение стандартной модели пользователя drf + сериализатор
+https://www.youtube.com/watch?v=Wk4Iq2g1Ss8
+
+Графики в панели администратора
+https://hakibenita.medium.com/how-to-turn-django-admin-into-a-lightweight-dashboard-a0e0bbf609ad
+
+

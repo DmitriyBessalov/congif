@@ -1,0 +1,32 @@
+db_user = await database.fetch_one(
+    query=table_user.select().where(table_user.c.username == username)
+)
+print(tuple(rec.values()))
+print(dict(rec.items()))
+
+
+post_list = await database.fetch_all(
+    query=posts.select().where(posts.c.parent_id == pk)
+)
+
+u = users.alias('user')
+p = posts.alias('post')
+q = select([u.c.id.label("userId"), u.c.name.label("userName"), p]) \
+    .select_from(p.join(u))\
+    .where((p.c.id == pk) & (u.c.id == p.c.user))
+post = await database.fetch_one(q)
+
+
+async def create_post(item: PostCreate, user: 1):
+    post = posts.insert().values(**item.dict(), user=user.id)
+    pk = await database.execute(post)
+
+
+async def update_post(pk: int, item: PostCreate, user: 1):
+    post = posts.update().where((posts.c.id == pk) & (posts.c.user == user.id)).values(**item.dict())
+    return await database.execute(post)
+
+
+async def delete_post(pk: int, user: 1):
+    post = posts.delete().where((posts.c.id == pk) & (posts.c.user == user.id))
+    return await database.execute(post)

@@ -5,19 +5,19 @@
 nano ./start_uvicorn.sh
 
 #!bin/bash
-cd /home/www/buddhachess
+cd /var/www/buddhachess
 source ./.venv/bin/activate && exec uvicorn main:app --reload --workers 4
 
 chmod +x ./start_uvicorn.sh
 
 sudo nano /etc/supervisor/conf.d/project.conf
 [program:fastapi]
-command=bash /home/www/buddhachess/start_uvicorn.sh
+command=bash /var/lib/jenkins/workspace/afon/start_uvicorn.sh
 user=root
 process_name=fastapi
 numproc=1
 autostart=1
-autorestart=1
+autorestart=0
 redirect_strerr=true
 
 
@@ -35,11 +35,11 @@ chmod +x ./start_daphne.sh
 sudo nano /etc/supervisor/conf.d/project.conf
 [program:daphne]
 command=bash /home/www/social_network/start_daphne.sh
-user=www
+user=root
 process_name=django
 numproc=1
 autostart=1
-autorestart=1
+autorestart=0
 redirect_strerr=true
 ----------------------------------------------
     

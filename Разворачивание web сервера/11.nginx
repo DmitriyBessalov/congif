@@ -1,8 +1,8 @@
 sudo apt-get install -y nginx
 
-sudo mkdir /home/www/nginx_cache/
-sudo chown -R www:www /home/www/
-sudo chmod 777 /home/www/nginx_cache/
+sudo mkdir /var/www/nginx_cache/
+sudo chown -R www:www /var/www/
+sudo chmod 777 /var/www/nginx_cache/
 
 sudo nano /etc/nginx/sites-enabled/default
 
@@ -10,16 +10,25 @@ sudo nano /etc/nginx/sites-enabled/default
 server {
   listen 80;
   charset utf-8;
-  server_name;
+  server_name buddhachess.org;
   client_max_body_size 20M;
   
-  location /static/ {
+  location /app/static/ {
     gzip              on;
     gzip_comp_level   1;
     gzip_types text/plain text/css text/x-scss text/x-csrc application/json application/x-javascript text/xml application/xml application/x-yaml application/xml+rss text/javascript application/javascript application/vnd.ms-fontobject application/x-font-ttf font/opentype image/svg+xml image/x-icon application/octet-stream font/ttf font/woff font/woff2;
     expires 8h;
 
-    root /home/www/buddhachess/;
+    root /var/www/buddhachess/;
+  }
+  
+  location /app/media/ {
+    gzip              on;
+    gzip_comp_level   1;
+    gzip_types text/plain text/css text/x-scss text/x-csrc application/json application/x-javascript text/xml application/xml application/x-yaml application/xml+rss text/javascript application/javascript application/vnd.ms-fontobject application/x-font-ttf font/opentype image/svg+xml image/x-icon application/octet-stream font/ttf font/woff font/woff2;
+    expires 8h;
+
+    root /var/www/buddhachess/;
   }
 
   location / {

@@ -6,7 +6,7 @@ cd ...
 python3 -m venv venv
 
 #Активация окружения
-source ./.venv/bin/activate
+source ./venv/bin/activate
 
 # Проверка
 >>> import sys
